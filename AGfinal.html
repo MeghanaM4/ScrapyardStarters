@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrapyard Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+  <!-- 4 annoying notifications-->
+  <div role="alert" id = "alert1" class="alert alert-info hidden fixed top-0 mt-4 w-1/4 z-50 flex justify-center">
+    <span>error: no ham</span>
+  </div>
+
+  <div role="alert" id = "alert2" class="alert alert-success hidden fixed top-0 mt-16 w-1/4 z-50 flex justify-center">
+    <span>warning: email bad?</span>
+  </div>
+
+  <div role="alert" id = "alert3" class="alert alert-warning hidden fixed top-0 mt-28 w-1/4 z-50 flex justify-center">
+    <span>success! 43 banana hats ordered</span>
+  </div>
+
+  <div role="alert" id = "alert4" class="alert alert-error hidden fixed top-0 mt-[160px] w-1/4 z-50 flex justify-center">
+    <span>alert: 4 red trucks en route</span>
+  </div>
+
+  <div class="w-full max-w-md mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg">
+
+    <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">Advice Generator</h2>
+
+
+    <form id="myForm">
+      <!-- Name Input -->
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-1" for="name">your name</label>
+        <input type="text" id="name" class="input w-full" placeholder="Enter your name" required>
+      </div>
+
+      <!-- Message Textarea -->
+      <div class="mb-6">
+        <label class="block text-gray-700 font-medium mb-3" for="problem">what's your problem?</label>
+        <textarea id="problem" class="textarea textarea-bordered w-full p-2 border-2 border-gray-200 rounded-md" placeholder="Your problem..." rows="4" required></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit" class="btn p-2 border-green-400 border-2 rounded-xl ">Give Me Advice</button>
+      </div>
+    </form>
+
+    <!-- Box to Display Submitted Message -->
+    <div id="problemBox" class="hidden mt-6 p-4 bg-green-100 text-gray-800 border border-green-300 rounded-lg">
+      <h3 class="font-bold mb-2">The Expert Advice:</h3>
+      <p id="advice"></p>
+    </div>
+
+    <!-- New Advice Text Area -->
+    <div id="newAdvice" class="hidden mb-6">
+      <label class="block text-gray-700 font-medium mb-2">Submit Advice</label>
+      <textarea id='submittedAdvice' class="textarea textarea-bordered w-full" placeholder="you have to give advice now." rows="4"></textarea>
+    </div>
+
+    <div id = "newAdviceButton" class="hidden text-center">
+      <button type="submit" class="btn p-2 border-red-400 border-2 rounded-xl ">submit advice</button>
+    </div>
+
+
+  </div>
+
+
+  <script>
+    // Get the form, success message, and message display elements
+    const form = document.getElementById('myForm');
+    const problemBox = document.getElementById('problemBox');
+    const advice = document.getElementById('advice');
+    const newAdvice = document.getElementById('newAdvice');
+
+    // Handle form submission
+    form.addEventListener('submit', function (event) {
+
+      // Prevent default form submission
+      event.preventDefault();
+
+      // Capture the form data
+      const name = document.getElementById('name').value;
+      const problem = document.getElementById('problem').value;
+      const submittedAdvice = document.getElementById('submittedAdvice').value;
+
+      // Display the submitted message in the new box
+      const adviceOptions = [problem + "? That's it? you want my advice? GET OVER IT.", "eat some pickles",
+        "idk go somewhere else", "don't ask me", "get out", "don't waste my time", "rub your fridge 3 times"];
+
+      const max = adviceOptions.length;
+      const rand = Math.floor(Math.random() * max);
+
+      advice.textContent = adviceOptions[rand];
+
+      problemBox.classList.remove('hidden');
+
+      setTimeout(() => {
+        alert1.classList.remove('hidden');
+      }, 3000); // 3000ms = 3 seconds
+
+      setTimeout(() => {
+        alert2.classList.remove('hidden');
+      }, 4000);
+
+      setTimeout(() => {
+        alert3.classList.remove('hidden');
+      }, 4500);
+
+      setTimeout(() => {
+        alert4.classList.remove('hidden');
+      }, 5000);
+
+      setTimeout(() => {
+        alert1.classList.add('hidden');
+        alert2.classList.add('hidden');
+        alert3.classList.add('hidden');
+        alert4.classList.add('hidden');
+      }, 7000);
+
+      setTimeout(() => {
+        myForm.classList.add('hidden');
+      }, 7050);
+
+
+      setTimeout(() => {
+        problemBox.classList.add('hidden');
+        newAdvice.classList.remove('hidden');
+        newAdviceButton.classList.remove('hidden');
+      }, 9000);
+
+      adviceOptions.push(submittedAdvice);
+
+      // clear the form inputs
+      form.reset();
+
+      //figure out how to restart program ??
+    });
+  </script>
+
+</body>
+
+</html>
