@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Useless Calculator</title>
+  <!-- DaisyUI (TailwindCSS extension) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="bg-[#91CCF4] h-screen flex items-center justify-center">
+  <div class="w-full max-w-sm mx-auto bg-[#F1A3BA] p-8 rounded-lg shadow-xl border-4 border-[#337D78]">
+    <h1 class="text-3xl font-extrabold text-black text-center mb-6">Useless Calculator</h1>
+
+    <!-- Input Fields for Numbers -->
+    <form id="calculator-form">
+      <div class="form-control mb-4">
+        <label for="number1" class="label">
+          <span class="label-text text-gray-700 font-medium">Number 1:</span>
+        </label>
+        <input type="number" id="number1" class="input input-bordered pl-2 border-[#337D78] w-full" placeholder="Enter first number" required />
+      </div>
+
+      <div class="form-control mb-4">
+        <label for="number2" class="label">
+          <span class="label-text text-gray-700 font-medium">Number 2:</span>
+        </label>
+        <input type="number" id="number2" class="input input-bordered pl-2 border-[#337D78] w-full" placeholder="Enter second number" required />
+      </div>
+
+      <!-- Operation Buttons -->
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <button type="button" class="btn bg-[#F3D24F] text-[#737373] font-bold hover:bg-[#F3A24F]" onclick="uselessCalculate('add')">Add</button>
+        <button type="button" class="btn bg-[#F3D24F] text-[#737373] font-bold hover:bg-[#F3A24F]" onclick="uselessCalculate('subtract')">Subtract</button>
+        <button type="button" class="btn bg-[#F3D24F] text-[#737373] font-bold hover:bg-[#F3A24F]" onclick="uselessCalculate('multiply')">Multiply</button>
+        <button type="button" class="btn bg-[#F3D24F] text-[#737373] font-bold hover:bg-[#F3A24F]" onclick="uselessCalculate('divide')">Divide</button>
+      </div>
+    </form>
+
+    <!-- Result Display -->
+    <div id="result-box" class="alert alert-info mt-4 hidden">
+      <span class="font-bold">Answer: </span>
+      <span id="result" class="text-xl font-bold"></span>
+    </div>
+  </div>
+
+  <script>
+    function uselessCalculate(operation) {
+      const number1 = parseFloat(document.getElementById('number1').value);
+      const number2 = parseFloat(document.getElementById('number2').value);
+      let result;
+
+      // Check if the numbers are valid
+      if (isNaN(number1) || isNaN(number2)) {
+        alert('Not a number, bro.');
+        return;
+      }
+
+      // Generate a random useless result
+      switch (operation) {
+        case 'add':
+          result = Math.random() * 100; // Random number for "add"
+          break;
+        case 'subtract':
+          result = Math.floor(Math.random() * 100) - 50; // Random number for "subtract"
+          break;
+        case 'multiply':
+          result = Math.random() * 500; // Random number for "multiply"
+          break;
+        case 'divide':
+          result = Math.random() * 10; // Random number for "divide"
+          break;
+        default:
+          result = "???"; // Catch-all for errors
+      }
+
+      // Display the useless result
+      document.getElementById('result').textContent = result;
+      document.getElementById('result-box').classList.remove('hidden');
+    }
+  </script>
+</body>
+
+</html>
